@@ -1,7 +1,5 @@
 <?php
 session_start();
-
-// Database connection
 $host = 'localhost';
 $db = 'cces';
 $user = 'root';
@@ -12,28 +10,22 @@ if ($conn->connect_error) {
     die('Database connection failed: ' . $conn->connect_error);
 }
 
-// Check if the post ID is set in the URL
 if (isset($_GET['id'])) {
     $post_id = $_GET['id'];
 
-    // Reject the post by updating its status to "rejected"
-    $reject_query = "UPDATE public_forum SET status = 'rejected' WHERE id = '$post_id'";
-
-    if ($conn->query($reject_query) === TRUE) {
+ 
+    $approve_query = "UPDATE public_forum SET status = 'approved', is_read = 0 WHERE id = '$post_id'";
+    
+    if ($conn->query($approve_query) === TRUE) {
         echo "<script>
-                alert('Post has been rejected successfully.');
+                alert('Post has been approved successfully.');
                 window.location.href='admnforam.php';
               </script>";
     } else {
         echo "<script>
-                alert('Error rejecting post: " . $conn->error . "');
-                window.location.href='admnform.php';
+                alert('Error approving post: " . $conn->error . "');
+                window.location.href='admnforam.php';
               </script>";
     }
-} else {
-    echo "<script>
-            alert('No post ID specified.');
-            window.location.href='admnforam.php';
-          </script>";
 }
 ?>
