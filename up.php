@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die('Database connection failed: ' . $conn->connect_error);
 }
 
-// Kureba niba ID iri muri URL
+
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     echo "<script>alert('No Initiative ID found!'); window.location.href = 'admin_initiatives.php';</script>";
     exit();
@@ -20,7 +20,7 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 
 $id = $_GET['id'];
 
-// Kwerekana amakuru ari muri database
+
 $query = "SELECT * FROM community_initiatives WHERE id = ?";
 $stmt = $conn->prepare($query);
 $stmt->bind_param("i", $id);
@@ -33,7 +33,7 @@ if (!$initiative) {
     exit();
 }
 
-// Iyo form ishyikirijwe
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $_POST['title'];
     $description = $_POST['description'];

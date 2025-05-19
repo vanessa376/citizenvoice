@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// Database connection
+
 $host = 'localhost';
 $db = 'cces';
 $user = 'root';
@@ -12,19 +12,18 @@ if ($conn->connect_error) {
     die('Database connection failed: ' . $conn->connect_error);
 }
 
-// Handle form submission
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = $conn->real_escape_string($_POST['title']);
     $content = $conn->real_escape_string($_POST['content']);
     
-    // Check if the session has the username
     if (isset($_SESSION['user_name'])) {
         $author_name = $_SESSION['user_name']; 
     } else {
         $author_name = "Anonymous";
     }
 
-    // Validate fields
+    
     if (!empty($title) && !empty($content)) {
         $query = "INSERT INTO public_forum (title, content, author_name, status) 
                   VALUES ('$title', '$content', '$author_name', 'pending')";

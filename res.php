@@ -5,15 +5,15 @@ $db = 'cces';
 $user = 'root';
 $pass = '';
 
-// Guhuza na Database
+
 $conn = new mysqli($host, $user, $pass, $db);
 
-// Reba niba connection yakunze
+
 if ($conn->connect_error) {
     die('Database connection failed: ' . $conn->connect_error);
 }
 
-// Kureba niba user yinjiriye muri login
+
 if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     header('Location: login.php');
     exit();

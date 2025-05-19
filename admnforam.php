@@ -45,8 +45,6 @@ if ($conn->connect_error) {
         ?>
     </div>
 
-    <!-- Admin Forum Management Page -->
-    <!-- admin_forum_management.php -->
     <h2>🗂️ Admin Forum Management</h2>
     <?php
     $admin_query = "SELECT * FROM public_forum ORDER BY created_at DESC";

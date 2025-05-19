@@ -12,7 +12,6 @@ if ($conn->connect_error) {
     die('Database connection failed: ' . $conn->connect_error);
 }
 
-// Fata amakuru yose yo muri public forum
 $query = "SELECT id, title, content, author_name, created_at FROM public_forum ORDER BY created_at DESC";
 $result = $conn->query($query);
 ?>
